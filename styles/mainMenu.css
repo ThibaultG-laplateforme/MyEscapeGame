@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap');
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-menu {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/main_menu_background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+#menu-content {
+  margin-right: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  width: 45%;
+}
+
+h1 {
+  color: rgb(0, 0, 0);
+  font-family: 'Rubik Wet Paint', sans-serif;
+  font-size: 10rem;
+  margin-bottom: 2rem;
+  text-wrap: wrap;
+  text-shadow: -2px 0 rgb(100, 5, 5), 0 2px rgb(99, 9, 9), 2px 0 rgb(110, 10, 10), 0 -2px rgb(103, 17, 17);
+}
+h1:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(113, 9, 9);
+  text-decoration-thickness: 0.7rem;
+  font-size: 11rem;
+  transition: font-size 0.3s ease;
+  user-select: none;
+}
+
+#buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  font-family: 'Rubik Wet Paint', sans-serif;
+  width: 80%;
+  padding: 1vh 2vw;
+  font-size: 2vw;
+  color: white;
+  background-color: rgba(0, 0, 0, 1);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1vh 0;
+  transition: background-color 0.3s ease;
+  box-shadow: -2px 0 rgb(100, 5, 5), 0 2px rgb(99, 9, 9), 2px 0 rgb(110, 10, 10), 0 -2px rgb(103, 17, 17);
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgb(0, 0, 0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 12vw;
+  }
+  h1:hover {
+    font-size: 13vw;
+    text-decoration-thickness: 0.5vw;
+  }
+
+  button {
+    font-size: 4vw;
+  }
+}
