@@ -68,45 +68,56 @@ export function togglePauseMenu(characterController) {
 /*  ------------------------------------------------------------------------------------------------  */
 
 export class Timer{
-    constructor(){
+    timerInterval = null; 
+    isTimerRunning = false; 
+    isPaused = false; 
+    remainingTime; 
+    timerElement; 
 
 
+    constructor(_remainingTime = 300){
+        this.remainingTime = _remainingTime;
+        this.timerElement = document.getElementById('timer');
     }
 
     startTimer() 
     {
-        if (!isTimerRunning && !isPaused) {
-            isTimerRunning = true;
-            timerInterval = setInterval(updateTimer, 1000);
+        if (!this.isTimerRunning && !this.isPaused) {
+            this.isTimerRunning = true;
+            this.timerInterval = setInterval(this.updateTimer, 1000);
         }
     }
 
     penalizeTime(timePenalty)
     {
-        remainingTime -= timePenalty;
-        if (remainingTime < 0) {
-            remainingTime = 0;
+        this.remainingTime -= timePenalty;
+        if (this.remainingTime < 0) {
+            this.remainingTime = 0;
         }    
     }
 
     
     #stopTimer() {
-        if (isTimerRunning) {
-            clearInterval(timerInterval);
-            isTimerRunning = false;
+        if (this.isTimerRunning) {
+            clearInterval(this.timerInterval);
+            this.isTimerRunning = false;
         }
     }
 
     #updateTimer() {
-        if (remainingTime > 0) {
-            remainingTime--; 
-            const minutes = Math.floor(remainingTime / 60);
-            const displaySeconds = remainingTime % 60;
-            timerElement.textContent = `${minutes}:${displaySeconds.toString().padStart(2, '0')}`;
+        if (this.remainingTime > 0) {
+            this.remainingTime--; 
+            this.renderTimer();
         } else {
-            timerElement.textContent = "Temps écoulé!";
-            stopTimer(); 
+            this.timerElement.textContent = "Temps écoulé!";
+            this.stopTimer(); 
         }
+    }
+
+    #renderTimer(){
+        const minutes = Math.floor(this.remainingTime / 60);
+        const displaySeconds = this.remainingTime % 60;
+        this.timerElement.textContent = `${minutes}:${displaySeconds.toString().padStart(2, '0')}`;
     }
 
     togglePauseMenu(characterController) {
@@ -119,15 +130,15 @@ export class Timer{
     
         if (isActive) {
             if (localStorage.getItem("sessionType") == SESSION_TYPE.SOLO)
-            {stopTimer();} 
-            isPaused = true; 
+            {this.stopTimer();} 
+            this.isPaused = true; 
             openSettingsModal();
             SDK3DVerse.disableInputs(); 
         } else {
-            isPaused = false;
+            this.isPaused = false;
             SDK3DVerse.enableInputs();
             closeSettingsModal(characterController)
-            startTimer(); 
+            this.startTimer(); 
         }
     }
     

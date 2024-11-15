@@ -9,7 +9,7 @@ export class Interactible
 
     async check()
     {
-        /* Put all condition */
+        /* Put condition  for all interact object*/
         return true;
     }
 }

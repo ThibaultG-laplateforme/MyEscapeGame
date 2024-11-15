@@ -5,7 +5,7 @@ import { Interactible } from "./Interatible.js";
 
 export class LightButton extends Interactible
 {
-  lightUID
+  lightUID; // 
   constructor(_name, _lightUID){
     super(_name);
     this.lightUID = _lightUID;

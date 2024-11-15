@@ -32,6 +32,9 @@ export async function interactWithEntity() {
   const targetUUID = "bc1045d4-0d75-4bd8-9a44-b6a5d5a8aaa0"; 
   await checkAndDisplayMessage(targetUUID, "hmmm... Un fusible semble mort... Essayons de remettre le courant...!", 3000 , 'b9dec695-bd69-4be7-bc6c-6fe215f8bdd3');
 
+
+  let timeFrame = Date.now(); 
+
   const entityNametag = getTags(target);
   
 
@@ -71,6 +74,8 @@ export async function interactWithEntity() {
       verifyCorrectFuses();
       break;
   }
+
+  console.log(Date.now() - timeFrame);
 
 }
 

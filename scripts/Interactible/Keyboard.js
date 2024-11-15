@@ -17,13 +17,13 @@ export class Keyboard extends Interactible
 
     async check(_entityNameTag)
     { 
-        if (_entityNameTag[1] === "keypad" && this.code.length < 4)
+        if (_entityNameTag[1] === "keypad" && this.codeEnter.length < 4)
         {
             this.codeEnter += _entityNameTag[2];
             console.log("code", this.codeEnter);
             displayMessage(this.codeEnter, 2000);
         }
-        else if (_entityNameTag[1] === "keyEnter" && this.code.length === 4)
+        else if (_entityNameTag[1] === "keyEnter" && this.codeEnter.length === 4)
         {
             this.VerifCode();
         }
